@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Giraffe Reservation System | GDI</title>
+    <!-- css -->
+    <link href='./skin/jquery-ui.min.css' rel='stylesheet'>
+    <link href='./skin/jquery-ui.structure.min.css' rel='stylesheet'>
+    <link href='./skin/jquery-ui.theme.min.css' rel='stylesheet'>
+    <link href='./lib/swiper/swiper.min.css' rel='stylesheet'>
+    <link href='./lib/fullcalendar/fullcalendar.css' rel='stylesheet'>
+    <link href='./lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href="./lib/remodal/remodal.css" rel="stylesheet">
+    <link href="./lib/remodal/remodal-default-theme.css" rel="stylesheet">
+    <link href='./gdi-giraffe.css' rel='stylesheet'>
+  </head>
+
+  <body>
+    <!-- header menu -->
+    <div class="header">
+      <div class="gdi-header gdi-display-box">
+        <h1><a href="#" class="gdi-logo">Giraffe</a></h1>
+        <ul class="gdi-header-menu gdi-display-box">
+          <li class="gdi-icon gdi-icon-by-member">
+            <a href="#modal-temporary">
+              <p>仮押さえ</p>
+            </a>
+          </li>
+          <li class="gdi-icon gdi-icon-for-slack">
+            <a href="#modal-slack">
+              <p>Slackに投稿</p>
+            </a>
+          </li>
+          <li class="gdi-icon gdi-icon-for-login">
+            <a href="#modal-portal">
+              <p>ポータルを見る</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper-container">
+      <div class="parallax-bg" style="background-image:url('./img/giraffe_bk.jpg')" data-swiper-parallax="-23%"></div>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="padding:20px;">
+          <div class="title" data-swiper-parallax="-100">今週のトピックス</div>
+          <div class="text" data-swiper-parallax="-300" style="padding:2px 10px;background-color:rgba(51,51,51,0.6);border-radius:10px;">
+            <ul id="topics" style="margin-left:0;padding-left:0;">
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#F58E7E;margin-right:10px;display:inline-block;width:46px;margin-bottom:3px;text-align:center;">Giraffe</span>GiraffeのMtgやります</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#5EBABA;margin-right:10px;display:inline-block;width:46px;;margin-bottom:3px;text-align:center;">News</span>新しい仲間が増えました！！</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#FDC44F;margin-right:10px;display:inline-block;width:46px;;margin-bottom:3px;text-align:center;">Event</span>ヤングブルー村合宿Mtgを開催します</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#5EBABA;margin-right:10px;display:inline-block;width:46px;;margin-bottom:3px;text-align:center;">News</span>新しい仲間が増えました！！</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#F58E7E;margin-right:10px;display:inline-block;width:46px;margin-bottom:3px;text-align:center;">Giraffe</span>GiraffeのMtgやります</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#F58E7E;margin-right:10px;display:inline-block;width:46px;margin-bottom:3px;text-align:center;">Giraffe</span>GiraffeのMtgやります</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#FDC44F;margin-right:10px;display:inline-block;width:46px;;margin-bottom:3px;text-align:center;">Event</span>ヤングブルー村合宿Mtgを開催します</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#F58E7E;margin-right:10px;display:inline-block;width:46px;margin-bottom:3px;text-align:center;">Giraffe</span>GiraffeのMtgやります</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#5EBABA;margin-right:10px;display:inline-block;width:46px;;margin-bottom:3px;text-align:center;">News</span>新しい仲間が増えました！！</li>
+              <li style="line-height:1.6em;"><span style="padding:0 5px;background:#FDC44F;margin-right:10px;display:inline-block;width:46px;;margin-bottom:3px;text-align:center;">Event</span>ヤングブルー村合宿Mtgを開催します</li>
+            </ul>
+          </div>
+          <div class="text" data-swiper-parallax="-300" style="margin-top:20px;padding:10px;background-color:rgba(51,51,51,0.6);border-radius:10px;text-align:center;">
+            <div style="font-size:18px;">
+              <span id="disp_title">仮押さえ：
+              <span id="disp_a"></span>年
+              <span id="disp_b"></span>月
+              <span id="disp_c"></span>日
+              <span id="disp_d"></span>時～
+              <div style="font-size:12px;">※1時間後が終了時間で仮入力されます</div>
+            </div>
+            <div id="reference_condition_date_window"></div>
+            <div id="rcd_btn"><button name="button" class="giraffe-btn-trans">送信する</button></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="text" data-swiper-parallax="-300">
+             <div id='calendar'></div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination swiper-pagination-white"></div>
+    </div>
+    
+    <!-- modal-temporary -->
+    <div class="remodal temporary" data-remodal-id="modal-temporary">
+      <form>
+      <input type="text" name="" id="sample" size="20">
+      </form>
+      <a class="remodal-cancel" href="#">Cancel</a>
+      <a class="remodal-confirm" href="#">OK</a>
+
+    </div>
+
+    <!-- modal-slack -->
+    <div class="remodal" data-remodal-id="modal-slack">
+      <h2 class="">Slackに投稿するよー</h2>
+      <a class="remodal-cancel" href="#">Cancel</a>
+      <a class="remodal-confirm" href="#">OK</a>
+    </div>
+
+    <!-- modal-portal -->
+    <div class="remodal" data-remodal-id="modal-portal">
+      <h2 class="">設定するよー</h2>
+      <a class="remodal-cancel" href="#">Cancel</a>
+      <a class="remodal-confirm" href="#">OK</a>
+    </div>
+
+    <!-- javascript -->
+    <script src='./lib/jquery.min.js'></script>
+    <script src='./lib/jquery-ui.custom.min.js'></script>
+    <script src='./lib/moment.min.js'></script>
+    <script src="./lib/swiper/swiper.min.js"></script>
+    <script src='./lib/fullcalendar/fullcalendar.min.js'></script>
+    <script src='./lib/fullcalendar/lang-all.js'></script>
+    <script src="./lib/remodal/remodal.min.js"></script>
+    <script src="./lib/accordion/jquery.accordion.js"></script>
+    <script src='./gdi-giraffe.js'></script>
+    <script>
+    $(function() {
+      // accordion
+      $('#topics').accordion();
+    });
+    </script>
+  </body>
+</html>
