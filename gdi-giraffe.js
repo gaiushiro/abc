@@ -33,7 +33,7 @@ var initCalendar = function(){
    },
    editable: true,
    eventLimit: true,
-   events: './json-events.php'
+   events: 'http://ec2-54-238-223-40.ap-northeast-1.compute.amazonaws.com/abc/jsonReturn.php'
    // events: [
    //  {
    //   title: 'All Day Event',
